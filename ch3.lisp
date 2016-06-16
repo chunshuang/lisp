@@ -1,25 +1,11 @@
-(defun shortest-path (start end net)
-  (bfs end (list (list start)) net))
+;; Solution to 3.2
+;Write a version of union that preserves the order of the elements in
+;the original lists:
+;> (new-union ' ( a b c)
+;(A B C D)
 
-(defun bfs (end queue net)
-  (if (null queue)
-      nil
-      (let ((path (car queue)))
-        (let ((node (car path)))
-          (if (eql node end)
-              (reverse path)
-              (bfs end
-                   (append (cdr queue)
-                           (new-paths path node net))
-                   net))))))
-(defun new-paths (path node net)
-  (mapcar #'(lambda (n)
-              (cons n path))
-          (cdr (assoc node net))))
-
-
-
-(defun new-union (lst-a lst-b) ; no termination condition
+; note: lst-a and lst-b must be lists
+(defun new-union (lst-a lst-b)
   (if (null lst-b)
       lst-a
       (if (member (car lst-b) lst-a)
