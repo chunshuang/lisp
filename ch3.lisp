@@ -1,7 +1,7 @@
 ;; Solution to 3.2
 ;Write a version of union that preserves the order of the elements in
 ;the original lists:
-;> (new-union ' ( a b c)
+;> (new-union '(a b c) '(b a d))
 ;(A B C D)
 
 ; note: lst-a and lst-b must be lists
