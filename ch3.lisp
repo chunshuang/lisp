@@ -42,3 +42,14 @@
       (if (eql elt (car lst))
           (myremove elt (cdr lst))
           (cons (car lst) (myremove elt (cdr lst))))))
+
+
+;; Solution to 3.4
+; Why does (member ' ( a ) ' ( ( a ) ( b ) ) ) return nil ?
+Because 'member' uses 'eql' to compare.
+> (eql '(a) '(a)
+nil
+
+Should use 'equal' instead:
+> (member '(a) '((a) (b)) :test #'equal)
+((a) (b))
