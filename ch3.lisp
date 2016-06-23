@@ -53,3 +53,31 @@ nil
 Should use 'equal' instead:
 > (member '(a) '((a) (b)) :test #'equal)
 ((a) (b))
+
+;; Solution to 3.5
+; Suppose the function pos+ takes a list and returns a list of each element
+;plus its position:
+;> (pos+ ' ( 7 5 1 4 ) )
+;(7 6 3 7)
+;Define this function using (a) recursion, (b) iteration, (c) mapcar.
+
+(a) recursion
+defun pos+ (lst)
+  (pos+recur 0 lst))
+
+(defun pos+recur (n lst)
+  (if (null lst)
+      nil
+      (cons (cons (+ n (car lst)) nil) (pos+recur (+ 1 n) (cdr lst)))))
+      
+      
+(b) iteration
+(defun pos+ (lst)
+  (do ((i 1 (+ i 1)))
+      ((= i (length lst)))
+    (setf (nth i lst) (+ (nth i lst) i)))
+  lst)
+
+
+(c) mapcar
+(mapcar #'+ '(0 1 2 3) '(7 5 1 4))
