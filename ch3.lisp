@@ -81,3 +81,21 @@ defun pos+ (lst)
 
 (c) mapcar
 (mapcar #'+ '(0 1 2 3) '(7 5 1 4))
+
+
+;; Solution to 3.6
+(a) cons: a pair of pointer, the first one is cdr and the second one is car.
+(b) list: a cons whose first pointer points to the first element of a list, and the second pointer points the rest of the
+          list
+(c) length: 
+     (defun length (lst)
+      (if (null lst)
+          0
+          (+ 1 (length (car lst))))) ; car points to the rest of the list
+(d) member:
+      (defun member (elt lst)
+        (if (null lst)
+            nil
+            (if (eql elt (cdr lst))
+                lst
+                (member elt (car lst))))) ; car/cdr reverse
