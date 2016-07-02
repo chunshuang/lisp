@@ -99,3 +99,25 @@ defun pos+ (lst)
             (if (eql elt (cdr lst))
                 lst
                 (member elt (car lst))))) ; car/cdr reverse
+
+
+;; Solution to 3.7
+; Modify the program in Figure 3.6 to use fewer cons cells. (Hint: use dotted list)
+(defun compress (x)
+  (if (consp x)
+      (compr (car x) 1 (cdr x))
+      x))
+
+(defun compr (elt n lst)
+  (if (null lst)
+      (list (n-elts elt n))
+      (let ((next (car lst)))
+        (if (eql next elt)
+            (compr elt (+ n 1) (cdr lst))
+            (cons (n-elts elt n)
+                  (compr next 1 (cdr lst)))))))
+
+(defun n-elts (elt n)
+  (if (> n 1)
+      (cons n elt) ; the only change is using 'cons' instead of 'list'
+      elt))
